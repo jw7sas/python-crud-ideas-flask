@@ -1,0 +1,9 @@
+flask==1.1.2
+flask-bootstrap==3.3.7.1
+flask-wtf==0.14.3
+flask-testing==0.8.1
+flask-sqlalchemy==2.5.1
+flask-login==0.4.1
+flask-FontAwesome==0.1.5
+marshmallow-sqlalchemy==0.24.1
+email-validator==1.1.2

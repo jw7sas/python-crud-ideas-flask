@@ -1,0 +1,11 @@
+venv
+app/static/node_modules
+app/static/package-lock.json
+app/uploads/profile_pictures/jrsaavedra_210116_113717.jpg
+app/uploads/profile_pictures/wsalgar_210116_123957.JPG
+__pycache__
+app/__pycache__
+app/auth/__pycache__
+app/ideas/__pycache__
+app/ideas/__pycache__
+app/users/__pycache__

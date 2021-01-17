@@ -1,0 +1,35 @@
+{% macro render_list(idea, delete, public_change) %}
+    <tr>
+        <td>{{ idea.title }}</td>
+        <td>{{ idea.description }}</td>
+        <td>{{ idea.category.name }}</td>
+        <td>{{ idea.is_public | visibility_public_or_private }}</td>
+        <td>
+            <div class="items fr-3">
+                <div class="item">
+                    <form action="{{ url_for('ideas.delete_idea', idea_id=idea.id)}}" method="POST">
+                        {{ delete.csrf_token }}
+                        <button type="submit" class=" btn btn-danger">
+                            <i class="fas fa-times-circle"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="item">
+                    <form action="{{ url_for('ideas.update_idea', idea_id=idea.id)}}" method="POST">
+                        <button type="submit" class=" btn btn-primary">
+                            <i class="fas fa-pencil-alt"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="item">
+                    <form action="{{ url_for('ideas.public_idea', idea_id=idea.id, is_public=1 if idea.is_public else 0 )}}" method="POST">
+                    {{ public_change.csrf_token }}
+                    <button type="submit" class=" btn btn-info">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </td>
+    </tr>
+{% endmacro %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% import 'macros/macroModal.html' as macro_modal %}
+{% import 'macros/macroListIdeas.html' as macro_ideas %}
+{% block title %}
+    {{ super() }}
+    Home
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <a href="{{ url_for('ideas.insertideas_view') }}" class="btn btn-primary btn-lg">Idea nueva</a>
+        {% if modal['insert'] is true %}
+            {{ macro_modal.render_modal("Registro de ideas", idea_form, 'ideas.home', 'primary') }}
+        {% endif %}
+        {% if modal['update'] is true %}
+            {{ macro_modal.render_modal("Actualización de ideas", idea_form, 'ideas.home', 'danger') }}
+        {% endif %}
+        <hr>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Descripción</th>
+                        <th>Categoria</th>
+                        <th>Visibilidad</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for idea in ideas %}
+                        {{ macro_ideas.render_list(idea, delete_form, public_idea_form) }}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+{% block custom_scripts %}
+    {% if (modal['insert'] is true) or (modal['update'] is true) %}
+        <script>
+            window.onload = function(){
+                $("#macroModal").modal("show");
+            }
+        </script>
+    {% endif %}
+{% endblock %}

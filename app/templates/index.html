@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% import 'macros/macroIdea.html' as macro_idea %}
+{% block title %}
+    {{ super() }}
+    index
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <h2>Ideas publicas...</h2>
+        <div class="row">
+            {% for idea in public_ideas %}
+                {{ macro_idea.render_idea(idea) }}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

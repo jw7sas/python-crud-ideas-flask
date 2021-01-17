@@ -1,0 +1,29 @@
+{% macro render_idea(idea) %}
+    <div class="col-md-3">
+        <div class="panel panel-{{ ['primary', 'success', 'info', 'warning', 'danger', 'default'] | random }}">
+            <div class="panel-heading">
+                {{ idea.title}}
+            </div>
+            <div class="panel-body">
+                {{ idea.description }}
+                <hr>
+                <div class="row">
+                    <div class="col-md-8 col-sm-6 col-xs-4">
+                        <b>Usuario: </b> {{ idea.user.username }}
+                        <b>Category: </b> <button class="btn btn-primary">{{ idea.category.name }}</button>
+                    </div>
+                    <div class="col-md-4 col-sm-6 col-xs-8 text-center">
+                        <div class="figure-profile">
+                            <img width="40" width="40"  class="img-circle" alt="avatar"
+                            src="{{ url_for('picture_profile', filename=idea.user.avatar) 
+                                    if idea.user.avatar else 
+                                    url_for('picture_profile', filename='none') 
+                                }}" 
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endmacro %}

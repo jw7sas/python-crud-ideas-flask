@@ -1,0 +1,18 @@
+{% extends 'bootstrap/base.html' %}
+{% block head %}
+    {{ super() }}
+    <title>
+        {% block title %}
+            Error |
+        {% endblock %}
+    </title>
+{% endblock %}
+{% block body %}
+    
+    {% block content %}
+    {% endblock %}
+
+    {% block scripts %}
+        {{ super() }}
+    {% endblock %}
+{% endblock %}

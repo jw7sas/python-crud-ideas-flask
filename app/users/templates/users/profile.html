@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block title %}
+    {{ super() }}
+    Perfil
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Mi Perfil
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <form method="post" enctype="multipart/form-data">
+                        {{ profile_form.csrf_token }}
+                        <div class="form-group">
+                            <label for=""> Cargar foto de perfil</label>
+                            {{ profile_form.upload }}
+                            <span class="text-danger">
+                                {{ ','.join(profile_form.upload.errors) }}
+                            </span><br>
+                        </div>
+                        <button type="submit" class="btn btn-danger">Subir foto</button>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <figure class="text-center">
+                        <img width="120" width="120"  class="img-circle" alt="avatar"
+                        src="{{ url_for('picture_profile', filename=current_user.avatar) 
+                                if current_user.avatar else 
+                                url_for('picture_profile', filename='none') 
+                            }}" 
+                        >
+                        <div class="label-figure-profile">
+                            <span class="label label-avatar">{{ current_user.id }}</span>
+                        </div>
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
